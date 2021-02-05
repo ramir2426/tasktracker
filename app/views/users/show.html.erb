@@ -1,0 +1,78 @@
+<div class="ui container">
+<br>
+  <div class="ui grid">
+    <div class="five wide column">
+    <div class="ui image">
+    <% if @user.online? %>
+                    <span class="ui green right ribbon label">Online</span>
+                    <% else %>
+                    <span class="ui red right ribbon label">Offline</span>
+                    <% end %>
+    <% if @user.avatar.attached? %>
+          <%= link_to image_tag(@user.avatar, class: 'avatar'), @user.avatar %>
+            <% else %>
+             <%= image_tag("user_placeholder.png") %>
+              <% end %>
+    </div>
+            <p> <p>
+    <h1 class="ui header">
+          <% if @user.name? %>
+            <%= @user.name %>
+              <% end %>
+                <div class="sub header">
+                  <i class="mail icon"></i>
+                  <%= @user.email %>
+                </div>
+                <div class="sub header">
+                  <i class="address card icon"></i>
+                  <%= @user.role unless @user.role.nil? %>
+                </div>
+                  <div class="sub header">
+                  <i class="users icon"></i>
+                  <%= Team.find(@user.team_id).name unless @user.team_id.nil? %>
+                </div>              
+        </h1>  
+</div>
+ <div class="eleven wide column">
+
+<div class="ui comments">
+  <h3 class="ui dividing header">Last <%= @user.name != nil ? @user.name : @user.email %>'s Comments:</h3>
+  
+    
+  <% Comment.where(user_id: @user.id).limit(10).each do |c| %>
+            <div class="comment">
+                <a class="avatar">
+                    <% if @user.avatar.attached? %>
+                        <%= image_tag(@user.avatar) %>
+                    <% else %>
+                        <%= image_tag("user_placeholder.png") %>
+                    <% end %>
+                </a>
+                <div class="content">
+                <a class="author">
+                    <% if @user.name? %>
+                    <%= @user.name %>
+                    <% else %>
+                    <%= @user.email %>
+                    <% end %>
+                </a>
+                <div class="metadata">
+                    <span class="date"><%= time_ago_in_words(c.created_at) %> ago.</span>
+                </div>
+                <div class="text">
+                    <%= link_to c.text, task_path(c.task_id) %>
+                </div>
+                <div class="actions">
+                    <% if c.user_id == current_user.id || User.find(c.user.id).is_admin? %>
+                    <%= link_to "Delete", [c.task, c], method: :delete, class: "reply"%>
+                    <% end %>
+                </div>
+                </div>
+            </div>
+        <% end %>
+
+</div>
+
+
+ </div>
+ </div>

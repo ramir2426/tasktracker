@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Task Tracker</title>
+  <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- X-Editbale -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/css/jquery-editable.css" rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
+    <!-- X-Editbale -->
+</head>
+
+<body>
+  <% if user_signed_in? %>
+    <div class="ui attached stackable menu">
+      <a class="item" href=<%=root_path %> >
+      <h3 class="ui header">
+        <i class="file alternate green icon"></i>
+        <div class="content"%>
+          Task Tracker
+        </div>
+      </h3>
+      </a>
+      <a class="item" href=<%=users_path %>>Users</a>
+      <% if current_user.is_admin? %>
+        <a class="item">Admin</a>
+      <% end %>
+      <div class="right menu">
+
+      <div class="item">  
+        <%= form_tag tasks_path, :method => 'get' do |f| %>
+          <div class="ui small input">
+            <%= text_field_tag :search, params[:search], autofocus: true, placeholder: 'id, summary or desc...' %>
+          </div>
+            <%= submit_tag "Search",  class: "ui primary button"%>
+          <% end %>
+      </div>
+      
+      <div class="item ">
+      <a class="ui labeled green icon button" href=<%= new_task_path %>>
+        <i class="plus icon"></i>
+        New task
+      </a>
+      </div>
+      <div class="item">
+        <i class="alarm large icon link" data-content="My notifications"></i>(0)
+      </div>
+       <div class="ui dropdown item">
+       <% if current_user.name? %>
+          <%= current_user.name%>
+            <% else %>
+              <%= current_user.email %>
+                <% end %>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" href=<%= edit_user_registration_path%> >Profile settings</a>
+        <a class="item">Notifications settings</a>
+         <%= link_to 'Log out', destroy_user_session_path, :method => :delete, class: "item" %>
+      </div>
+    </div>
+    </div>
+    </div>
+    <% end %>
+      <%= yield %>
+
+</body>
+
+</html>
+
+<script>
+$('.ui.dropdown').dropdown();
+$('.alarm.large.icon.link').popup();
+</script>

@@ -1,0 +1,34 @@
+<%= form_tag tasks_path, :method => 'get' do |f| %>
+<div class="ui form">
+  <div class="four fields">
+    <div class="field">
+      <div class="ui input">
+        <%= select_tag :project, options_for_select(Project.all.collect {|u| [ u.name, u.id ] }, params[:project]), :include_blank => "Project...", class: "ui fluid dropdown"%>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui input">
+        <%= select_tag :status, options_for_select(Task.status, params[:status]), :include_blank => "Status", class: "ui fluid normal dropdown", multiple: true %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui input">
+        <%= select_tag :priority, options_for_select(Task.priority, params[:priority]), :include_blank => "Priority", class: "ui fluid dropdown"%>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui input">
+        <%= select_tag :tst, options_for_select(User.where(role: 'Tester').collect {|u| [ u.email[0,4], u.id ] }, params[:tst]), :include_blank => "Tester", class: "ui fluid dropdown"%>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui input">
+        <%= select_tag :dev, options_for_select(User.where(role: 'Developer').collect {|u| [ u.email[0,4], u.id ] }, params[:dev]), :include_blank => "Developer", class: "ui fluid dropdown"%>
+      </div>
+    </div>
+    <div class="actions">
+      <%= submit_tag "Filter tasks", class: 'ui primary button' %>
+    </div>
+  </div>
+</div>
+<% end %>

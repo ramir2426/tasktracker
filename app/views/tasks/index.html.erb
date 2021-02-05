@@ -1,0 +1,91 @@
+<div class="padding_container">
+
+<%= render 'filter' %>
+
+<% if Task.all.count > 0 %>
+<table class="ui compact sortable striped selectable celled table">
+  <thead class="ui inverted blue table">
+    <tr>
+      <th class="sorted descending">ID</th>
+      <th>PROJECT</th>
+      <th>SUMMARY</th>
+      <th width="100pixels">TMS</th>
+      <th width="140pixels">ISSUE</th>
+      <th width="140pixels">CR</th>
+      <th width="7%">TAGS</th>
+      <th>PRIORITY</th>
+      <th>ASSIGNED</th>
+      <th>EST</th>
+      <th>STATUS</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @tasks.each do |t| %>
+    <tr>
+      <td><%= link_to t.id.to_s, task_path(t)%></a></td>
+      <td><%= Project.find(t.project).name unless t.project.nil? %></td>
+      <td><a class="summary" data-type= "text" data-pk= "" data-url= "<%=task_path(t) %>"> <%= t.summary %> </a> </td>
+      <td>TMHS-0945</td>
+      <td>ISS-GENE-45022IS</td>
+      <td>CR-GENE-43245IS</td>
+      <td>
+        <% if t.tags %>
+          <% t.tags.each do |tag| %>      
+            <a href=#><%= tag.tag %></a>
+          <% end %>
+        <% end %>
+      </td>
+      <td><a class="priority" data-type= "select" data-pk= "" data-url= "<%=task_path(t) %>"><%= t.priority %></a></td>
+      <td></td>
+      <td></td>
+      <td><a class="status" data-type= "select" data-pk= "" data-url= "<%=task_path(t) %>"><%= t.status %> </a> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<%= paginate @tasks %>
+</div>
+
+<script>
+$('table').tablesort();
+
+$.fn.editable.defaults.ajaxOptions = {type: "PUT"};
+
+$('.summary').editable({   
+  params: function(params) {
+    var data = {};
+    data["summary"] = params.value;
+    return data;
+  }
+}); 
+
+
+$('.status').editable({   
+  source: [   
+              <% Task.status.each do |st| %>
+                {value: '<%= st %>', text: '<%= st %>'},
+              <% end %>
+           ],
+  params: function(params) {
+    var data = {};
+    data["status"] = params.value;
+    return data;
+  }
+}); 
+
+$('.priority').editable({   
+  source: [   
+              <% Task.priority.each do |st| %>
+                {value: '<%= st %>', text: '<%= st %>'},
+              <% end %>
+           ],
+  params: function(params) {
+    var data = {};
+    data["priority"] = params.value;
+    return data;
+  }
+}); 
+
+
+</script>
