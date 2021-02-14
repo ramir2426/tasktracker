@@ -21,7 +21,7 @@ class Task < ApplicationRecord
   #get specific types of tasks
   scope :tasks, -> (params) do
     logger.debug 
-    where("cast(id as project) LIKE ?", "%#{params[:project]}%")
+    where("cast(project as text) LIKE ?", "%#{params[:project]}%")
       .where(
         if params[:status]
           params[:status].map { |s| "status LIKE '%#{s}%' or "}.join()[0...-4]
