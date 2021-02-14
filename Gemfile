@@ -17,6 +17,7 @@ gem 'mini_magick'
 gem 'faker', :require => false
 gem 'kaminari'
 gem 'pg'
+gem 'rack-timeout', '0.3.2'
 # gem  'sqlite3'
 
 group :production do
