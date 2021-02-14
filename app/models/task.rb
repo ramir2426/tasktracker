@@ -4,18 +4,21 @@ class Task < ApplicationRecord
 
   has_many_attached :attachmnets
 
+  #define priorties type
   def self.priority
     ["Low", "Middle", "High", "Critical", "Urgent", "RTH"]
   end
-
+  #define priorties type
   def self.status
     %w[New Investigation Coding Implemented Testing Rework Tested Closed Canceled]
   end
 
+  #for searching
   scope :search, ->(params) do
     where("id LIKE ? OR summary LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
   end
 
+  #get specific types of tasks
   scope :tasks, -> (params) do
     logger.debug 
     where("project LIKE ?", "%#{params[:project]}%")
