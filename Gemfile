@@ -16,8 +16,7 @@ gem 'activestorage'
 gem 'mini_magick'
 gem 'faker', :require => false
 gem 'kaminari'
-#gem 'pg'
-
+gem 'pg'
 
 group :production do
   gem 'pg'
