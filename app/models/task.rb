@@ -15,13 +15,13 @@ class Task < ApplicationRecord
 
   #for searching
   scope :search, ->(params) do
-    where("id LIKE ? OR summary LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    where("cast(id as text) LIKE ? OR summary LIKE ? OR description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
   end
 
   #get specific types of tasks
   scope :tasks, -> (params) do
     logger.debug 
-    where("project LIKE ?", "%#{params[:project]}%")
+    where("cast(id as project) LIKE ?", "%#{params[:project]}%")
       .where(
         if params[:status]
           params[:status].map { |s| "status LIKE '%#{s}%' or "}.join()[0...-4]
