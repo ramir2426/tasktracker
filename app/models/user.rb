@@ -4,12 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #Associations 
   has_one_attached :avatar
+  belongs_to :team
 
  def self.roles
   ["Tester", "Developer", "BA", "TST Manager", "DEV Manager"]
  end
 
+  #User searching funtion
   scope :search, -> (params) do
         where("email LIKE ?", "%#{params[:email]}%").
         where("name LIKE ?", "#{params[:name]}%").
@@ -18,6 +21,7 @@ class User < ApplicationRecord
         where("active LIKE ?", "#{params[:active]}%")
   end
 
+  #Check user online or not
   def online?
     self.updated_at > 10.minutes.ago
   end

@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.2'
-gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'semantic-ui-sass'
@@ -17,9 +16,15 @@ gem 'activestorage'
 gem 'mini_magick'
 gem 'faker'
 gem 'kaminari'
+gem 'pg'
 
 group :production do
   gem 'pg'
+end
+
+group :development, :test do
+    gem 'railroady'
+    gem 'rails-erd'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
