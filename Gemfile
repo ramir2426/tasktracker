@@ -18,6 +18,7 @@ gem 'faker', :require => false
 gem 'kaminari'
 gem 'pg'
 gem 'rack-timeout', '0.3.2'
+gem 'rake'
 # gem  'sqlite3'
 
 group :production do
