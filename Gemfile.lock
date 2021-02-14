@@ -58,7 +58,6 @@ GEM
     faker (2.16.0)
       i18n (>= 1.6, < 2)
     ffi (1.14.2)
-    ffi (1.14.2-x86-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.9)
@@ -90,17 +89,12 @@ GEM
     mimemagic (0.3.5)
     mini_magick (4.11.0)
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
     minitest (5.14.3)
     nio4r (2.5.5)
-    nokogiri (1.11.1)
-      mini_portile2 (~> 2.5.0)
-      racc (~> 1.4)
-    nokogiri (1.11.1-x86-mingw32)
+    nokogiri (1.11.1-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.2.3)
-    pg (1.2.3-x86-mingw32)
     puma (3.12.6)
     racc (1.5.2)
     rack (2.2.3)
@@ -166,6 +160,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -174,8 +169,6 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2021.1)
-      tzinfo (>= 1.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     websocket-driver (0.7.3)
@@ -183,8 +176,7 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
-  ruby
-  x86-mingw32
+  x86_64-darwin-19
 
 DEPENDENCIES
   activestorage
@@ -200,8 +192,9 @@ DEPENDENCIES
   rails-erd
   sass-rails (~> 5.0)
   semantic-ui-sass
+  sqlite3
   turbolinks (~> 5.1.0)
   tzinfo-data
 
 BUNDLED WITH
-   1.17.2
+   2.2.9
