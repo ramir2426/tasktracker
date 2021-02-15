@@ -14,11 +14,11 @@ class User < ApplicationRecord
 
   #User searching funtion
   scope :search, -> (params) do
-        where("email LIKE ?", "%#{params[:email]}%").
-        where("name LIKE ?", "#{params[:name]}%").
-        where("role LIKE ?", "#{params[:role]}%").
-        where("team_id LIKE ?", "#{params[:team]}%").
-        where("active LIKE ?", "#{params[:active]}%")
+        where("cast(email as text) LIKE ?", "%#{params[:email]}%").
+        where("cast(name as text) LIKE ?", "#{params[:name]}%").
+        where("cast(role as text) LIKE ?", "#{params[:role]}%").
+        where("cast(team_id as text) LIKE ?", "#{params[:team]}%").
+        where("cast(active as text) LIKE ?", "#{params[:active]}%")
   end
 
   #Check user online or not
