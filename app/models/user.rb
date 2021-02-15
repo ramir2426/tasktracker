@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   belongs_to :team
 
+  before_create :assign_team
+
  def self.roles
   ["Tester", "Developer", "BA", "TST Manager", "DEV Manager"]
  end
@@ -24,5 +26,9 @@ class User < ApplicationRecord
   #Check user online or not
   def online?
     self.updated_at > 10.minutes.ago
+  end
+
+  def assign_team
+    self.team_id = Team.first.id
   end
 end
