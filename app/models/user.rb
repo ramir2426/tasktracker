@@ -28,6 +28,7 @@ class User < ApplicationRecord
     self.updated_at > 10.minutes.ago
   end
 
+  #assign a team to user
   def assign_team
     self.team_id = Team.first.id
   end
