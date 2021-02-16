@@ -13,7 +13,7 @@ class TasksController < ApplicationController
 
   #get specific task
   def show
-    @task = Task.find(params[:id])
+    @task = Task.find_by_id(params[:id])
     @comments = @task.comments.order('created_at DESC').page params[:page]
   end
 
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
   #request for edit task
   def edit
-    @task = Task.find(params[:id])
+    @task = Task.find_by_id(params[:id])
   end
 
   #create for task
@@ -54,7 +54,7 @@ class TasksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task
-    @task = Task.find(params[:id])
+    @task = Task.find_by_id(params[:id])
   end
 
   # Never trust parameters from the scary internet,

@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  #relations with task
   has_many :tags
   has_many :comments
 

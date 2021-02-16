@@ -1,0 +1,12 @@
+I have implemented below point as clean code strandards.
+
+- Proper Commenting
+- Delete useless commenting
+- Precise naming
+- Kill useless code
+- Explanatry variables
+- Avoid negative conditions
+- DRY (Don't Repeat Yourself) as ruby on rails's framework main mission
+- Use natural language with argument lables
+- Avoid pointless function naming
+- Standard formating implemented 
