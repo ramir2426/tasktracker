@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
-    if @project.save
+    if @project.can_project_create(is_admin.call, @project)
       redirect_to @project, notice: 'Project was successfully created.'
     else
       render :new

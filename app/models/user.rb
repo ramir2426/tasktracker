@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   before_create :assign_team
 
+  is_admin =  { self.role == "admin" ? true : false}
+
  def self.roles
   ["Tester", "Developer", "BA", "TST Manager", "DEV Manager"]
  end
