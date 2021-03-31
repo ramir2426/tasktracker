@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This README would help to find my project required things instructions.
 
-Things you may want to cover:
+Project is deployed on tassktracker.herokuapp.com/.
+Creds: sent to you over the email/Moodle comment section
+    
+Things that required to cover:
 
-* Ruby version
+* UML: reside `doc` folder.
 
-* System dependencies
+* Metrics: can check on this https://sonarcloud.io/dashboard?id=ramir2426_tasktracker link.
 
-* Configuration
+* Clean Code Development: I have developed project according to clean code standarnd points through the project. Some examples and which points implemented can be found `cleanCode` folder.
 
-* Database creation
+* Build: I have used `heroku` built system for the project. Screenshots can be found under `CI/CD` folder.
 
-* Database initialization
+* Continuous Delivery: I have implemented `heroku` pipline for building CI/CD. Screenshots can be found under `CI/CD` folder.
 
-* How to run the test suite
+* IDE: Use JetBrains `RubyMine` and favorite shortcut key is `command+G` for `find Next replacement`.
 
-* Services (job queues, cache servers, search engines, etc.)
+* DSL: example implemented related to my project please check `dsl` folder.
 
-* Deployment instructions
+* Functional Programming: Used to build the project. Some example under `functionalProgramming` folder,
 
 * ...
