@@ -28,6 +28,11 @@ class User < ApplicationRecord
     self.updated_at > 10.minutes.ago
   end
 
+  #check is user admin or not
+  def is_admin?
+    self.role == "admin" ? true : false
+  end
+
   #assign a team to user
   def assign_team
     self.team_id = Team.first.id
